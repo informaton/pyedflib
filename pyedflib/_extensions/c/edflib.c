@@ -1346,10 +1346,13 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
   {
     if((((unsigned char *)scratchpad)[i]<32)||(((unsigned char *)scratchpad)[i]>126))
     {
+      /*
       *edf_error = EDFLIB_FILE_CONTAINS_FORMAT_ERRORS;
       free(edf_hdr);
       free(edfhdr);
       return(NULL);
+      */
+      continue;
     }
   }
 
@@ -1364,10 +1367,13 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
   {
     if((((unsigned char *)scratchpad)[i]<32)||(((unsigned char *)scratchpad)[i]>126))
     {
+        /*
       *edf_error = EDFLIB_FILE_CONTAINS_FORMAT_ERRORS;
       free(edf_hdr);
       free(edfhdr);
       return(NULL);
+      */
+      continue;
     }
   }
 
@@ -2231,11 +2237,14 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
     {
       if((scratchpad[j]<32)||(scratchpad[j]>126))
       {
+        /*
         *edf_error = EDFLIB_FILE_CONTAINS_FORMAT_ERRORS;
         free(edf_hdr);
         free(edfhdr->edfparam);
         free(edfhdr);
         return(NULL);
+        */
+        continue;
       }
     }
     strncpy(edfhdr->edfparam[i].reserved, edf_hdr + 256 + (edfhdr->edfsignals * 224) + (i * 32), 32);
@@ -2244,6 +2253,7 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
 
 /********************* EDF+ PATIENTNAME *********************************************/
 
+/*
   if(edfhdr->edfplus || edfhdr->bdfplus)
   {
     error = 0;
@@ -2303,6 +2313,7 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
                             if(strcmp(scratchpad2 + 3, "DEC"))
                               error = 1;
     }
+
 
     if(error)
     {
@@ -2399,8 +2410,10 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
     p += i + 1;
   }
 
-/********************* EDF+ RECORDINGFIELD *********************************************/
+*/
 
+/********************* EDF+ RECORDINGFIELD *********************************************/
+/*
   if(edfhdr->edfplus || edfhdr->bdfplus)
   {
     error = 0;
@@ -2592,7 +2605,7 @@ static struct edfhdrblock * edflib_check_edf_file(FILE *inputfile, int *edf_erro
     edfhdr->plus_recording_additional[i] = 0;
     p += i + 1;
   }
-
+*/
 /********************* FILESIZE *********************************************/
 
   edfhdr->hdrsize = edfhdr->edfsignals * 256 + 256;

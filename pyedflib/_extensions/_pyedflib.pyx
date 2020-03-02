@@ -150,7 +150,6 @@ cdef class CyEdfReader:
         result = c_edf.edfopen_file_readonly(file_name_str, &self.hdr, annotations_mode, check_file_size)
         
         self.file_name = file_name
-
         return self.check_open_ok(result)
 
     def read_annotation(self):
@@ -163,8 +162,6 @@ cdef class CyEdfReader:
             annotlist[ii][1] = annot.duration
             annotlist[ii][2] = annot.annotation
         return annotlist
-
-
 
     property handle:
         "edflib internal int handle"
